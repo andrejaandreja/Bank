@@ -5,8 +5,8 @@
  */
 package com.bank.springmvc.service;
 
-import com.bank.springmvc.dao.ClientDao;
-import com.bank.springmvc.model.Client;
+import com.bank.springmvc.dao.KlijentDao;
+import com.bank.springmvc.model.Klijent;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +17,22 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Andreja
  */
-@Service("clientService")
+@Service("klijentService")
 @Transactional
-public class ClientServiceImpl implements ClientService {
+public class KlijentServiceImpl implements KlijentService {
 
     @Autowired
-    private ClientDao dao;
+    private KlijentDao dao;
 
-    public Client findById(int id) {
+    public Klijent findById(int id) {
         return dao.findById(id);
     }
 
-    public void saveClient(Client client) {
-        dao.saveClient(client);
+    public void saveClient(Klijent klijent) {
+        dao.saveClient(klijent);
     }
 
-    public void updateClient(Client client) {
+    public void updateClient(Klijent klijent) {
 
     }
 
@@ -40,11 +40,11 @@ public class ClientServiceImpl implements ClientService {
         dao.deleteClientByJMBG(jmbg);
     }
 
-    public List<Client> findAllClients() {
+    public List<Klijent> findAllClients() {
         return dao.findAllClients();
     }
 
-    public Client findClientByJMBG(String jmbg) {
+    public Klijent findClientByJMBG(String jmbg) {
        return dao.findClientByJMBG(jmbg);
     }
 

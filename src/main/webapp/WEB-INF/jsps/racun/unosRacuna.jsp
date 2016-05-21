@@ -1,61 +1,105 @@
-<div class="container-fluid" aligment="left">
 
-	<form data-toggle="validator" role="form" action="/unosKlijenata" method="post">
-  <div class="form-group">
-    <label for="inputName" class="control-label">Name</label>
-    <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
-  </div>
-  <div class="form-group has-feedback">
-    <label for="inputTwitter" class="control-label">Twitter</label>
-    <div class="input-group">
-      <span class="input-group-addon">@</span>
-      <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
+<div class="list-group">
+    <div class="list-group-item">
+        <b><a href="racun/prikazRacuna">Racuni</a> / Unos</b>
     </div>
-    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-    <span class="help-block with-errors">Hey look, this one has feedback icons!</span>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail" class="control-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
-    <div class="help-block with-errors"></div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword" class="control-label">Password</label>
-    <div class="form-group col-sm-6">
-      <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
-      <span class="help-block">Minimum of 6 characters</span>
-    </div>
-    <div class="form-group col-sm-6">
-      <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-      <div class="help-block with-errors"></div>
-    </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="radio">
-      <label>
-        <input type="radio" name="underwear" required>
-        Boxers
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="underwear" required>
-        Briefs
-      </label>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" id="terms" data-error="Before you wreck yourself" required>
-        Check yourself
-      </label>
-      <div class="help-block with-errors"></div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
-</form>
 </div>
+
+<form action="racun/unos" method ="post" class='form-horizontal'>
+
+    <div class='form-group'>
+        <label class='control-label col-xs-4'>Klijent</label>
+        <div class='col-xs-8'>
+            <select name='jmbg' id="jmbg" class='form-control'></select>
+        </div>
+    </div>
+
+    <div class='form-group'>
+        <div class="row">
+            <div class="col-xs-4">
+                <select id="transakcija" class="form-control"></select>
+            </div>
+            <div class="col-xs-4">
+                <button type='button' class="btn btn-default" onclick="DodajTransakciju()"><span class='fa fa-fw fa-plus'></span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class='form-group'>
+        <table class="table table-condensed table-align">
+            <thead>
+                <tr>
+                    <th>Sifra transakcije</th>
+                    <th>Vrsta</th>
+                    <th>Valuta</th>
+                    <th>Iznos</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id='stavke'></tbody>
+        </table>
+    </div>
+
+    <div class='text-right'>
+        <button type="submit" class="btn btn-primary"><span class="fa fa-fw fa-check"></span></button>
+        <a href="posetaStomatologu/pretraga" class="btn btn-default"><span class="fa fa-fw fa-remove"></span></a>
+    </div>
+
+</form>
+
+<script>    
+
+    function DodajTransakciju() {
+        if($("#stavka-"+$("#usluga").val()).val()!=undefined){
+            alert("Data usluga je vec dodata u spisak usluga");
+            return;
+        }
+        $.get("posetaStomatologu/dodajStavku/" + $("#usluga").val(), {}, function (html) {
+            $("#stavke").append(html);
+        })
+    }
+
+    function IzbaciStavku(i) {
+        $("#stavka-"+i).remove();
+    }
+    
+    $(document).ready(function () {
+        $.get("stomatoloskaUsluga/json", {}, function (data) {
+            $("#usluga").append("<option value=''>--</option>");
+            data = JSON.parse(data);
+            for (i = 0; i < data.length; i++) {
+                $("#usluga").append("<option value='" + data[i].sifraUsluge + "'>" + data[i].nazivUsluge+ "</option>");
+            }
+        });
+    });
+    
+    $(document).ready(function () {
+        $.get("pacijent/json", {}, function (data) {
+            $("#sifraPacijenta").append("<option value=''>--</option>");
+            data = JSON.parse(data);
+            for (i = 0; i < data.length; i++) {
+                $("#sifraPacijenta").append("<option value='" + data[i].sifraPacijenta + "'>" + data[i].ime +" "+data[i].prezime+ "</option>");
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('form').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                sifraPacijenta: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Pacijent nije unet'
+                        }
+                    }
+                }
+            }
+        })
+    });
+
+</script>

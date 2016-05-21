@@ -5,22 +5,22 @@
  */
 package com.bank.springmvc.dao;
 
-import com.bank.springmvc.model.Client;
+import com.bank.springmvc.model.Klijent;
 import java.util.List;
 
 /**
  *
  * @author Andreja
  */
-public interface ClientDao {
+public interface KlijentDao {
     
-    Client findById(int id);
+    Klijent findById(int id);
  
-    void saveClient(Client client);
+    void saveClient(Klijent client);
      
     void deleteClientByJMBG(String jmbg);
      
-    List<Client> findAllClients();
+    List<Klijent> findAllClients();
  
-    Client findClientByJMBG(String jmbg);
+    Klijent findClientByJMBG(String jmbg);
 }

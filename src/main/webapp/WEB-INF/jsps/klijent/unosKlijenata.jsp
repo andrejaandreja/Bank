@@ -10,7 +10,7 @@
     <div class='form-group'>
         <label class='control-label col-xs-4'>JMBG:</label>
         <div class='col-xs-8'>
-            <input name='JMBG' class='form-control' value='${klijent.JMBG}'/>
+            <input name='jmbg' class='form-control' value='${klijent.jmbg}'/>
         </div>
     </div>
 
@@ -68,15 +68,16 @@
 
 <script>
 
-    $(document).ready(function () {
-        $.get("racun/json", {}, function (data) {
-            $("#brojRacuna").append("<option value=''>--</option>");
-            data = JSON.parse(data);
-            for (i = 0; i < data.length; i++) {
-                $("#brojRacuna").append("<option value='" + data[i].brojRacuna + "'>" + data[i].brojRacuna + "</option>");
-            }
-        });
-    });
+//   prebaciti u transakciju
+//    $(document).ready(function () {
+//        $.get("valuta/json", {}, function (data) {
+//            $("#naziv").append("<option value=''>--</option>");
+//            data = JSON.parse(data);
+//            for (i = 0; i < data.length; i++) {
+//                $("#naziv").append("<option value='" + data[i].naziv + "'>" + data[i].simbol + "</option>");
+//            }
+//        });
+//    });
 
     $(document).ready(function () {
         $('#datetimepicker1').datetimepicker();
@@ -90,10 +91,31 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                JMBG: {
+                jmbg: {
                     validators: {
                         notEmpty: {
                             message: 'JMBG nije unet'
+                        }
+                    }
+                },
+                ime: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Ime nije uneto'
+                        }
+                    }
+                },
+                prezime: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Prezime nije uneto'
+                        }
+                    }
+                },
+                adresa: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Adresa nije uneta'
                         }
                     }
                 },
@@ -101,20 +123,6 @@
                     validators: {
                         notEmpty: {
                             message: 'Email nije unet'
-                        }
-                    }
-                },
-                ime: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Ime nije unet'
-                        }
-                    }
-                },
-                prezime: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Prezime nije unet'
                         }
                     }
                 }

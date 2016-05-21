@@ -7,6 +7,13 @@
     </div>
 </div>
 
+<form action="klijent/pretraga" method="get" class="form-inline">
+    <div class="form-group">
+        <input class="form-control" name="param">
+        <button type="submit" class="btn btn-default"><span class="fa fa-fw fa-search"></span></button>
+    </div>
+</form>
+
 <table class='table table-condensed table-align'>
     <thead>
         <tr>
@@ -50,23 +57,23 @@
                 </td>  
                 <td>
                     <p class='form-control-static'>
-                        ${klijent.datumRodjenja}
+                         <fmt:formatDate value="${klijent.datumRodjenja}" var="formattedDate" type="date" pattern="dd.MM.yyyy." />
+                        ${formattedDate}                        
                     </p>
                 </td>        
                 <td>
                     <div class='text-right'>
                         <div class='btn-group'>
-                            <a href="detaljiKlijenta/${klijent.jmbg}" class="btn btn-default"><span class='fa fa-fw fa-info'></span></a>
-                            <a href="izmenaKlijenata/${klijent.jmbg}" class="btn btn-warning"><span class='fa fa-fw fa-file'></span></a>
-                            <a href="#myModal_${klijent.jmbg}" role="button" class="btn btn-danger" data-toggle="modal"><span class='fa fa-fw fa-trash'></span></a>
+                            <a href="${pageContext.request.contextPath}/klijent/detaljiKlijenta/${klijent.klijent_id}" class="btn btn-default"><span class='fa fa-fw fa-info'></span></a>
+                            <a href="${pageContext.request.contextPath}/klijent/izmenaKlijenata/${klijent.klijent_id}" class="btn btn-warning"><span class='fa fa-fw fa-file'></span></a>
+                            <a href="${pageContext.request.contextPath}/klijent/brisanjeKlijenata/${klijentklijent_id}" class="btn btn-danger"><span class='fa fa-fw fa-trash'></span></a>
+<!--                        <a href="#myModal_${klijent.jmbg}" role="button" class="btn btn-danger" data-toggle="modal"><span class='fa fa-fw fa-trash'></span></a>-->
 
-                    <!--<a href="brisanjeKlijenata/${klijent.jmbg}" class="btn btn-danger"><span class='fa fa-fw fa-trash'></span></a>-->
-                    <!--<a href="brisanjeKlijenata/${klijent.jmbg}" role="button" class="btn btn-large btn-primary" data-toggle="modal">Launch Demo Modal</a>-->
                         </div>
                     </div>
                 </td>               
             </tr>
-        <div id="myModal_${klijent.jmbg}" class="modal fade">
+        <div id="myModal_${klijent.klijent_id}" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -78,7 +85,7 @@
                         <p>Are you sure you want to delete this user? </p>
                     </div>
                     <div class="modal-footer">
-                        <form action="client.do" method ="post" commandName="client" class='form-horizontal'>
+                        <form action="klijent.do" method ="post" commandName="klijent" class='form-horizontal'>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-fw fa-remove"></span></button>
                             <button type="submit" name="action" value="delete" class="btn btn-default" onclick="doAjaxPost()"><span class="fa fa-fw fa-check"></span></a>
                         </form>
@@ -89,23 +96,3 @@
     </c:forEach>
 </tbody>
 </table>
- <script type="text/javascript">
-
-        function doAjaxPost() {
-
-        $.ajax({
-
-        type: "POST",
-
-        url: "/Bank/client.do",
-
-        success: function(response){         
-
-        },
-
-
-        });
-
-        }
-
-        </script>

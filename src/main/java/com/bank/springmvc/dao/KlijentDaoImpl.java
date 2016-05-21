@@ -5,7 +5,7 @@
  */
 package com.bank.springmvc.dao;
 
-import com.bank.springmvc.model.Client;
+import com.bank.springmvc.model.Klijent;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -16,14 +16,14 @@ import org.springframework.stereotype.Repository;
  *
  * @author Andreja
  */
-@Repository("clientDao")
-public class ClientDaoImpl extends AbstractDao<Integer, Client> implements ClientDao{
+@Repository("klijentDao")
+public class KlijentDaoImpl extends AbstractDao<Integer, Klijent> implements KlijentDao{
 
-    public Client findById(int id) {
+    public Klijent findById(int id) {
         return getByKey(id);
     }
 
-    public void saveClient(Client client) {
+    public void saveClient(Klijent client) {
         persist(client);
     }
 
@@ -34,15 +34,17 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
     }
 
     @SuppressWarnings("unchecked")
-    public List<Client> findAllClients() {
+    public List<Klijent> findAllClients() {
         Criteria criteria = createEntityCriteria();
-        return (List<Client>) criteria.list();
+        return (List<Klijent>) criteria.list();
     }
 
-    public Client findClientByJMBG(String jmbg) {
+    public Klijent findClientByJMBG(String jmbg) {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("jmbg", jmbg));
-        return (Client) criteria.uniqueResult();
+        return (Klijent) criteria.uniqueResult();
     }
+    
+    
     
 }

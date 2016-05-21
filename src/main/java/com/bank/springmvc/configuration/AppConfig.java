@@ -5,6 +5,8 @@
  */
 package com.bank.springmvc.configuration;
 
+import java.awt.image.TileObserver;
+import java.util.Properties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 
 /**
  *
@@ -40,11 +44,30 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return viewResolver;
     }
 
-    @Bean
-    public ParameterizableViewController viewController() {
-        ParameterizableViewController viewController
-                = new ParameterizableViewController();
-        viewController.setViewName("index");
-        return viewController;
-    }
+//    @Bean
+//    public ViewResolver viewResolver() {
+//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//        viewResolver.setViewClass(UrlBasedViewResolver.class);
+//        Properties props = new Properties();
+//        props.put("viewClass", "org.springframework.web.servlet.view.tiles3.TilesView");
+//        viewResolver.setAttributes(props);
+//        return viewResolver;
+//    }
+
+//    @Bean
+//    public TilesConfigurer tilesConfigurer() {
+//        TilesConfigurer configurer = new TilesConfigurer();
+//        // "/WEB-INF/jsps/**/tiles.xml"
+//        configurer.setDefinitions(new String[]{"/WEB-INF/defs/general.xml"});
+//        configurer.setCheckRefresh(true);
+//        return configurer;
+//    }
+//
+//    @Bean
+//    public ParameterizableViewController viewController() {
+//        ParameterizableViewController viewController
+//                = new ParameterizableViewController();
+//        viewController.setViewName("index");
+//        return viewController;
+//    }
 }

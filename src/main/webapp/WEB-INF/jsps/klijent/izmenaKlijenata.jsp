@@ -10,22 +10,51 @@
     </div>
 </div>
 
-<form action="izmenaKlijenata/${klijent.JMBG}" method ="post" class='form-horizontal'>
+<form action="${pageContext.request.contextPath}/klijent/izmenaKlijenata/${klijent.klijent_id}" method ="post" class='form-horizontal'>
 
     <div class='form-group'>
-        <label class='control-label col-xs-4'>Ime</label>
+        <label class='control-label col-xs-4'>Jmbg:</label>
+        <div class='col-xs-8'>
+            <input name='jmbg' class='form-control' value='${klijent.jmbg}'/>
+        </div>
+    </div>
+
+    <div class='form-group'>
+        <label class='control-label col-xs-4'>Ime:</label>
         <div class='col-xs-8'>
             <input name='ime' class='form-control' value='${klijent.ime}'/>
         </div>
     </div>
-    
+
     <div class='form-group'>
-        <label class='control-label col-xs-4'>Prezime</label>
+        <label class='control-label col-xs-4'>Prezime:</label>
         <div class='col-xs-8'>
             <input name='prezime' class='form-control' value='${klijent.prezime}'/>
         </div>
     </div>
+
+    <div class='form-group'>
+        <label class='control-label col-xs-4'>Adresa:</label>
+        <div class='col-xs-8'>
+            <input name='adresa' class='form-control' value='${klijent.adresa}'/>
+        </div>
+    </div>
+
+    <div class='form-group'>
+        <label class='control-label col-xs-4'>Email:</label>
+        <div class='col-xs-8'>
+            <input name='email' class='form-control' value='${klijent.email}'/>
+        </div>
+    </div>
         
+    <div class='form-group'>
+        <label class='control-label col-xs-4'>Datum rodjenja</label>
+        <div class='col-xs-8'>
+            <fmt:formatDate value="${klijent.datumRodjenja}" var="formattedDate" type="date" pattern="dd.MM.yyyy." />                       
+            <input name='datumRodjenja' class='form-control' value='${formattedDate}'/>
+        </div>
+    </div>
+
     <div class='text-right'>
         <button type="submit" class="btn btn-primary"><span class="fa fa-fw fa-check"></span></button>
         <a href="prikazKlijenata" class="btn btn-default"><span class="fa fa-fw fa-remove"></span></a>
@@ -34,7 +63,7 @@
 </form>
 
 <script>
-
+    
     $(document).ready(function () {
         $('form').bootstrapValidator({
             feedbackIcons: {
@@ -43,6 +72,13 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
+                jmbg: {
+                    validators: {
+                        notEmpty: {
+                            message: 'JMBG nije unet'
+                        }
+                    }
+                },
                 ime: {
                     validators: {
                         notEmpty: {
@@ -56,9 +92,24 @@
                             message: 'Prezime nije uneto'
                         }
                     }
+                },
+                adresa: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Adresa nije uneta'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email nije unet'
+                        }
+                    }
                 }
             }
         })
     });
+
 
 </script>

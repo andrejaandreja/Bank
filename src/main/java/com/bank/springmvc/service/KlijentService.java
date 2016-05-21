@@ -5,25 +5,25 @@
  */
 package com.bank.springmvc.service;
 
-import com.bank.springmvc.model.Client;
+import com.bank.springmvc.model.Klijent;
 import java.util.List;
 
 /**
  *
  * @author Andreja
  */
-public interface ClientService {
+public interface KlijentService {
     
-    Client findById(int id);
+    Klijent findById(int id);
      
-    void saveClient(Client client);
+    void saveClient(Klijent client);
      
-    void updateClient(Client client);
+    void updateClient(Klijent client);
      
     void deleteClientByJMBG(String jmbg);
  
-    List<Client> findAllClients(); 
+    List<Klijent> findAllClients(); 
      
-    Client findClientByJMBG(String jmbg);
+    Klijent findClientByJMBG(String jmbg);
  
 }
