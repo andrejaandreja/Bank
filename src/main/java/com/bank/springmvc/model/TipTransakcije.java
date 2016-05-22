@@ -2,6 +2,7 @@ package com.bank.springmvc.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 public class TipTransakcije {
     
     @Id
+    @GeneratedValue
     @Column(name="tiptransakcije_id")
     private int tiptransakcije_id;
     

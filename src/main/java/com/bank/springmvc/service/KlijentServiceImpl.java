@@ -36,16 +36,16 @@ public class KlijentServiceImpl implements KlijentService {
 
     }
 
-    public void deleteClientByJMBG(String jmbg) {
-        dao.deleteClientByJMBG(jmbg);
+    public void deleteClientById(int klijent_id) {
+        dao.deleteClientById(klijent_id);
     }
 
     public List<Klijent> findAllClients() {
         return dao.findAllClients();
     }
 
-    public Klijent findClientByJMBG(String jmbg) {
-       return dao.findClientByJMBG(jmbg);
+    public Klijent findClientById(int klijent_id) {
+       return dao.findClientById(klijent_id);
     }
 
 }

@@ -6,7 +6,7 @@
 
 <div class="list-group">
     <div class="list-group-item">
-        <b><a href="prikazKlijenata">Klijent</a> / Detalji</b>
+        <b><a href="${pageContext.request.contextPath}/klijent/prikazKlijenata">Klijent</a> / Detalji</b>
     </div>
 </div>
 
@@ -72,35 +72,35 @@
                 <th>Broj racuna</th>
                 <th>Datum kreiranja</th>
                 <th>Vrsta racuna</th>
-                <th class='text-right'><a href="racun/unos" class="btn btn-primary"><span class='fa fa-fw fa-plus'></span></a></th>
+                <th class='text-right'><a href="${pageContext.request.contextPath}/racun/unosRacuna" class="btn btn-primary"><span class='fa fa-fw fa-plus'></span></a></th>
             </tr>
         </thead>
         <tbody>
 
-        <c:forEach items="${klijent.pregledRacunaList}" var="pregledRacuna" >
+        <c:forEach items="${klijent.pregledRacunaList}" var="racun" >
 
             <tr>
                 <td>
                     <p class='form-control-static'>
-                        ${pregledRacuna.brojRacuna}
+                        ${racun.brojRacuna}
                     </p>
                 </td>   
                 <td>
                     <p class='form-control-static'>
-            <fmt:formatDate value="${pregledRacuna.datumKreiranja}" var="formattedDate" type="date" pattern="dd.MM.yyyy." />
+            <fmt:formatDate value="${racun.datumKreiranja}" var="formattedDate" type="date" pattern="dd.MM.yyyy." />
             ${formattedDate}
             </p>
             </td>
             <td>
                 <p class='form-control-static'>
-                    ${pregledRacuna.vrstaRacuna}
+                    ${racun.vrstaRacuna}
                 </p>
             </td>     
             <td>
                 <div class='text-right'>
                     <div class='btn-group'>
-                        <a href="racun/detaljiRacuna/${pregledRacuna.brojRacuna}" class="btn btn-default"><span class='fa fa-fw fa-info'></span></a>
-                        <a href="racun/brisanjeRacuna/${pregledRacuna.brojRacuna}" class="btn btn-danger"><span class='fa fa-fw fa-trash'></span></a>
+                        <a href="${pageContext.request.contextPath}/racun/detaljiRacuna/${racun.racun_id}" class="btn btn-default"><span class='fa fa-fw fa-info'></span></a>
+                        <a href="${pageContext.request.contextPath}/racun/brisanjeRacuna/${racun.racun_id}" class="btn btn-danger"><span class='fa fa-fw fa-trash'></span></a>
                     </div>
                 </div>
             </td>               
@@ -110,8 +110,8 @@
     </table>
 
     <div class='text-right'>
-        <a href="izmenaKlijenata/${klijent.klijent_id}" class="btn btn-warning"><span class="fa fa-fw fa-file"></span></a>
-        <a href="brisanjeKlijenata/${klijent.klijent_id}" class="btn btn-default"><span class="fa fa-fw fa-remove"></span></a>
+        <a href="${pageContext.request.contextPath}/klijent/izmenaKlijenata/${klijent.klijent_id}" class="btn btn-warning"><span class="fa fa-fw fa-file"></span></a>
+        <a href="${pageContext.request.contextPath}/klijent/prikazKlijenata" class="btn btn-default"><span class="fa fa-fw fa-remove"></span></a>
     </div>
 
 </div>

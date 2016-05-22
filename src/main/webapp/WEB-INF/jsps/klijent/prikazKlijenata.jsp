@@ -66,7 +66,7 @@
                         <div class='btn-group'>
                             <a href="${pageContext.request.contextPath}/klijent/detaljiKlijenta/${klijent.klijent_id}" class="btn btn-default"><span class='fa fa-fw fa-info'></span></a>
                             <a href="${pageContext.request.contextPath}/klijent/izmenaKlijenata/${klijent.klijent_id}" class="btn btn-warning"><span class='fa fa-fw fa-file'></span></a>
-                            <a href="${pageContext.request.contextPath}/klijent/brisanjeKlijenata/${klijentklijent_id}" class="btn btn-danger"><span class='fa fa-fw fa-trash'></span></a>
+                            <a href="${pageContext.request.contextPath}/klijent/brisanjeKlijenata/${klijent.klijent_id}" class="btn btn-danger"><span class='fa fa-fw fa-trash'></span></a>
 <!--                        <a href="#myModal_${klijent.jmbg}" role="button" class="btn btn-danger" data-toggle="modal"><span class='fa fa-fw fa-trash'></span></a>-->
 
                         </div>

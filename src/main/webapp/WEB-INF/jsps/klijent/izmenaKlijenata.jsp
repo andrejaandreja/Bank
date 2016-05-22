@@ -6,7 +6,7 @@
 
 <div class="list-group">
     <div class="list-group-item">
-        <b><a href="prikazKlijenata">Klijent</a> / Izmena</b>
+        <b><a href="${pageContext.request.contextPath}/klijent/prikazKlijenata">Klijent</a> / Izmena</b>
     </div>
 </div>
 
@@ -57,7 +57,7 @@
 
     <div class='text-right'>
         <button type="submit" class="btn btn-primary"><span class="fa fa-fw fa-check"></span></button>
-        <a href="prikazKlijenata" class="btn btn-default"><span class="fa fa-fw fa-remove"></span></a>
+        <a href="${pageContext.request.contextPath}/klijent/prikazKlijenata" class="btn btn-default"><span class="fa fa-fw fa-remove"></span></a>
     </div>
 
 </form>

@@ -20,10 +20,10 @@ public interface KlijentService {
      
     void updateClient(Klijent client);
      
-    void deleteClientByJMBG(String jmbg);
+    void deleteClientById(int klijent_id);
  
     List<Klijent> findAllClients(); 
      
-    Klijent findClientByJMBG(String jmbg);
+    Klijent findClientById(int klijent_id);
  
 }

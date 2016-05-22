@@ -27,9 +27,9 @@ public class KlijentDaoImpl extends AbstractDao<Integer, Klijent> implements Kli
         persist(client);
     }
 
-    public void deleteClientByJMBG(String jmbg) {
+    public void deleteClientById(int klijent_id) {
         Query query = getSession().createSQLQuery("delete from Klijent where jmbg = :jmbg");
-        query.setString("jmbg", jmbg);
+        query.setString("klijent_id", String.valueOf(klijent_id));
         query.executeUpdate();
     }
 
@@ -39,9 +39,9 @@ public class KlijentDaoImpl extends AbstractDao<Integer, Klijent> implements Kli
         return (List<Klijent>) criteria.list();
     }
 
-    public Klijent findClientByJMBG(String jmbg) {
+    public Klijent findClientById(int klijent_id) {
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("jmbg", jmbg));
+        criteria.add(Restrictions.eq("klijent_id", klijent_id));
         return (Klijent) criteria.uniqueResult();
     }
     

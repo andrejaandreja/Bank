@@ -7,9 +7,11 @@ package com.bank.springmvc.model;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,6 +26,7 @@ import org.springframework.context.annotation.Lazy;
 public class Klijent {
 
     @Id
+    @GeneratedValue
     @Column(name="klijent_id")
     private int klijent_id;
     
@@ -45,13 +48,13 @@ public class Klijent {
     @Column(name = "datumRodjenja")
     private Date datumRodjenja;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "klijent")
-    private List<Racun> pregledRacunaList;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "klijent")
+    private Set<Racun> pregledRacunaList;
 
     public Klijent() {
     }
 
-    public Klijent(int klijent_id, String jmbg, String ime, String prezime, String adresa, String email, Date datumRodjenja, List<Racun> pregledRacunaList) {
+    public Klijent(int klijent_id, String jmbg, String ime, String prezime, String adresa, String email, Date datumRodjenja) {
         this.klijent_id = klijent_id;
         this.jmbg = jmbg;
         this.ime = ime;
@@ -59,7 +62,6 @@ public class Klijent {
         this.adresa = adresa;
         this.email = email;
         this.datumRodjenja = datumRodjenja;
-        this.pregledRacunaList = pregledRacunaList;
     }
 
     public int getKlijent_id() {
@@ -118,12 +120,14 @@ public class Klijent {
         this.datumRodjenja = datumRodjenja;
     }
 
-    public List<Racun> getPregledRacunaList() {
+    public Set<Racun> getPregledRacunaList() {
         return pregledRacunaList;
     }
 
-    public void setPregledRacunaList(List<Racun> pregledRacunaList) {
+    public void setPregledRacunaList(Set<Racun> pregledRacunaList) {
         this.pregledRacunaList = pregledRacunaList;
-    }    
+    }
+
+  
     
 }

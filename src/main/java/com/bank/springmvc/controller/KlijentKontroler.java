@@ -83,39 +83,39 @@ public class KlijentKontroler {
         return prikazKlijenata(model);
     }
 
-    @RequestMapping(value = "detaljiKlijenta/{jmbg}", method = RequestMethod.GET)
-    public ModelAndView detalji(@PathVariable String jmbg, ModelMap model) {
-        model.addAttribute("klijent", service.findClientByJMBG(jmbg));
+    @RequestMapping(value = "detaljiKlijenta/{klijent_id}", method = RequestMethod.GET)
+    public ModelAndView detalji(@PathVariable int klijent_id, ModelMap model) {
+        model.addAttribute("klijent", service.findClientById(klijent_id));
         model.addAttribute("view", "klijent/detaljiKlijenta");
         ModelAndView modelAndView = new ModelAndView("index", model);
         return modelAndView;
     }
 
-    @RequestMapping(value = "izmenaKlijenata/{jmbg}", method = RequestMethod.GET)
-    public ModelAndView izmena_get(@PathVariable String jmbg, ModelMap model) {
-        model.addAttribute("klijent", service.findClientByJMBG(jmbg));
+    @RequestMapping(value = "izmenaKlijenata/{klijent_id}", method = RequestMethod.GET)
+    public ModelAndView izmena_get(@PathVariable int klijent_id, ModelMap model) {
+        model.addAttribute("klijent", service.findClientById(klijent_id));
         model.addAttribute("view", "klijent/izmenaKlijenata");
         ModelAndView modelAndView = new ModelAndView("index", model);
         return modelAndView;
     }
 
-    @RequestMapping(value = "izmenaKlijenata/{jmbg}", method = RequestMethod.POST)
+    @RequestMapping(value = "izmenaKlijenata/{klijent_id}", method = RequestMethod.POST)
     public ModelAndView izmena_post(@PathVariable String jmbg, @ModelAttribute("form") Klijent klijent, ModelMap model) {
         service.updateClient(klijent);
         return prikazKlijenata(model);
     }
 
-    @RequestMapping(value = "brisanjeKlijenata/{jmbg}", method = RequestMethod.GET)
-    public ModelAndView brisanje_get(@PathVariable String jmbg, ModelMap model) {
-        model.addAttribute("klijent", service.findClientByJMBG(jmbg));
+    @RequestMapping(value = "brisanjeKlijenata/{klijent_id}", method = RequestMethod.GET)
+    public ModelAndView brisanje_get(@PathVariable int klijent_id, ModelMap model) {
+        model.addAttribute("klijent", service.findClientById(klijent_id));
         model.addAttribute("view", "klijent/brisanjeKlijenata");
         ModelAndView modelAndView = new ModelAndView("index", model);
         return modelAndView;
     }
 
-    @RequestMapping(value = "brisanjeKlijenata/{jmbg}", method = RequestMethod.POST)
-    public ModelAndView brisanje_Post(@PathVariable String jmbg, ModelMap model) {
-        service.deleteClientByJMBG(jmbg);
+    @RequestMapping(value = "brisanjeKlijenata/{klijent_id}", method = RequestMethod.POST)
+    public ModelAndView brisanje_Post(@PathVariable int klijent_id, ModelMap model) {
+        service.deleteClientById(klijent_id);
         return prikazKlijenata(model);
     }
 

@@ -6,11 +6,13 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,6 +24,7 @@ import javax.persistence.Table;
 public class Racun{
 
     @Id
+    @GeneratedValue
     @Column(name="racun_id")
     private int racun_id;       
     
@@ -39,7 +42,7 @@ public class Racun{
     private Klijent klijent;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "racun")
-    private List<Transakcija> listaTransakcije;
+    private Set<Transakcija> listaTransakcije;
 
     public Racun() {
     }
@@ -92,12 +95,14 @@ public class Racun{
         this.klijent = klijent;
     }
 
-    public List<Transakcija> getListaTransakcije() {
+    public Set<Transakcija> getListaTransakcije() {
         return listaTransakcije;
     }
 
-    public void setListaTransakcije(List<Transakcija> listaTransakcije) {
+    public void setListaTransakcije(Set<Transakcija> listaTransakcije) {
         this.listaTransakcije = listaTransakcije;
-    }      
+    }
+
+       
 
 }
