@@ -6,8 +6,8 @@
 package com.bank.springmvc.model;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.springframework.context.annotation.Lazy;
 
 /**
  *
@@ -48,7 +47,7 @@ public class Klijent {
     @Column(name = "datumRodjenja")
     private Date datumRodjenja;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "klijent")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "klijent",cascade=CascadeType.ALL)
     private Set<Racun> pregledRacunaList;
 
     public Klijent() {

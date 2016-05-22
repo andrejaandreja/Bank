@@ -35,7 +35,7 @@ public class KlijentDaoImpl extends AbstractDao<Integer, Klijent> implements Kli
 
     @SuppressWarnings("unchecked")
     public List<Klijent> findAllClients() {
-        Criteria criteria = createEntityCriteria();
+        Criteria criteria = createEntityCriteria().setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return (List<Klijent>) criteria.list();
     }
 

@@ -1,14 +1,8 @@
 package com.bank.springmvc.model;
 
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,11 +31,11 @@ public class Racun{
     @Column(name="vrstaRacuna")
     private String vrstaRacuna;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name="klijent_id")
     private Klijent klijent;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "racun")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "racun",cascade=CascadeType.ALL)
     private Set<Transakcija> listaTransakcije;
 
     public Racun() {
